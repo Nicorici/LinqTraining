@@ -42,17 +42,10 @@ namespace LinqTraining
             };
 
             var firstQuery = products.Where(product => product.Features.Any(p => features.Any(f => f.Id == p.Id)));
-           
 
-            var secondQuery =
-                from product in products
-                where product.Features.All(p => features.Any(f => f.Id == p.Id))
-                select product;
+            var secondQuery = products.Where(product => features.All(p => product.Features.Any(f => f.Id == p.Id)));
 
-            var thirdQuery =
-                from product in products
-                where product.Features.All(p => features.All(f => f.Id != p.Id))
-                select product;
+            var thirdQuery = products.Where(product => !product.Features.Any(p => features.Any(f => f.Id == p.Id)));
 
         }
     }
