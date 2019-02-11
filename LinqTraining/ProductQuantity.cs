@@ -43,16 +43,12 @@ namespace LinqTraining
          {new Product { Name = "MousePad",Quantity=1 } }
          };
 
-           
+
             IEnumerable<Product> firstList = from f in first
-                                             select second.Any(s=>s.Name==f.Name) ?
+                                             select second.Any(s => s.Name == f.Name) ?
                                              new Product { Quantity = second.First(s => s.Name == f.Name).Quantity + f.Quantity, Name = f.Name } : f;
 
-
             IEnumerable<Product> result = firstList.Concat( second.Except(first));
-            foreach(var  element in result)
-                Console.WriteLine($"{element.Name},{element.Quantity}");
-            Console.Read();
 
         }
     }
