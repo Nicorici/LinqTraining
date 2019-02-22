@@ -22,7 +22,7 @@ namespace LinqTraining
                 return;
             }
 
-            if (!IsIvalidPath(destination))
+            if (IsIvalidPath(destination))
             {
                 Console.WriteLine("The destiantion file could not be created");
                 return;
@@ -46,11 +46,15 @@ namespace LinqTraining
 
         public static string SubdirectoryPath(DateTime date, string format)
         {
+            if (format.Length < 1)
+                return "";
             return (date.ToString(format, CultureInfo.InvariantCulture)).Replace("/", "\\");
         }
 
         private static string AddPrefixToName(FileInfo file, string format)
         {
+            if (format.Length < 1)
+                return file.Name;
             return (file.CreationTime.ToString(format, CultureInfo.InvariantCulture) + file.Name);
         }
 
